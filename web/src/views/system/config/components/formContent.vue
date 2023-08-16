@@ -331,7 +331,7 @@ export default {
       const form = JSON.parse(JSON.stringify(this.form))
       const keys = Object.keys(form)
       const values = Object.values(form)
-      let submitForm = Object.assign([],this.formList)
+      const submitForm = Object.assign([], this.formList)
       for (const index in this.formList) {
         const item = this.formList[index]
         // eslint-disable-next-line camelcase
@@ -404,7 +404,6 @@ export default {
           this.$message.error('校验不通过！')
         } else {
           const { row } = $table.insert()
-
         }
       }
     },

@@ -3,12 +3,6 @@
     <router-view/>
     <!--  用来兼容乾坤前端微服务  -->
     <div id="qiankun"></div>
-    <!-- 授权后可以删除-->
-    <div class="dvadmin-auth">
-      <span>Powered by Django-Vue-Admin</span>
-      <el-divider direction="vertical"></el-divider>
-      <span>Copyright dvadmin团队</span>
-    </div>
   </div>
 </template>
 
