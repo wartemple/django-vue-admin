@@ -151,10 +151,10 @@ class ImportSerializerMixin:
             for ele in data:
                 filter_dic = {'id':ele.get('id')}
                 instance = filter_dic and queryset.filter(**filter_dic).first()
-                # print(156,ele)
                 serializer = self.import_serializer_class(instance, data=ele, request=request)
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
+                print(serializer.data)
             return DetailResponse(msg=f"导入成功！")
 
     @action(methods=['get'],detail=False)

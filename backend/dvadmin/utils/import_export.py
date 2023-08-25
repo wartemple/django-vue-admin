@@ -7,19 +7,24 @@ import openpyxl
 from django.conf import settings
 
 from dvadmin.utils.validator import CustomValidationError
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from io import BytesIO
 
 
-def import_to_data(file_url, field_data, m2m_fields=None):
+def import_to_data(file, field_data, m2m_fields=None):
     """
     读取导入的excel文件
-    :param file_url:
+    :param file:
     :param field_data: 首行数据源
     :param m2m_fields: 多对多字段
     :return:
     """
     # 读取excel 文件
-    file_path_dir = os.path.join(settings.BASE_DIR, file_url)
-    workbook = openpyxl.load_workbook(file_path_dir)
+    if isinstance(file, str):
+        file_path_dir = os.path.join(settings.BASE_DIR, file)
+        workbook = openpyxl.load_workbook(file_path_dir)
+    elif isinstance(file, InMemoryUploadedFile):
+        workbook = openpyxl.load_workbook(BytesIO(file.read()))
     table = workbook[workbook.sheetnames[0]]
     theader = tuple(table.values)[0]  # Excel的表头
     is_update = '更新主键(勿改)' in theader  # 是否导入更新
