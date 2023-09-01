@@ -159,5 +159,14 @@ export default {
   'tree-selector': {
     form: { component: { name: 'd2p-tree-selector', props: { } } },
     component: { name: 'values-format', props: {} }
+  },
+  'table-progress': {
+    // 表单组件配置
+    form: { component: { name: 'form-input', props: { color: 'danger' } } },
+    // 行组件配置
+    component: { name: 'table-progress', props: {} },
+    // 行展示时居中
+    align: 'center'
+    // 您还可以写更多默认配置
   }
 }

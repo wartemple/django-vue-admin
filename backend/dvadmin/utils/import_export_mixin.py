@@ -154,7 +154,6 @@ class ImportSerializerMixin:
                 serializer = self.import_serializer_class(instance, data=ele, request=request)
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
-                print(serializer.data)
             return DetailResponse(msg=f"导入成功！")
 
     @action(methods=['get'],detail=False)

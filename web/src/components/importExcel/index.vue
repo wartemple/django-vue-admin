@@ -13,7 +13,7 @@
           :action="upload.url"
           :disabled="upload.isUploading"
           :on-progress="handleFileUploadProgress"
-          :on-success="handleFileSuccess"
+          :on-success="successHandler"
           :auto-upload="false"
           drag
         >
@@ -83,6 +83,12 @@ export default {
       type: Boolean,
       default () {
         return true
+      }
+    },
+    successHandler: {
+      type: Function,
+      default () {
+        return this.handleFileSuccess
       }
     }
   },

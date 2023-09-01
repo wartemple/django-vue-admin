@@ -1,11 +1,12 @@
 import { request } from '@/api/service'
-export const urlPrefix = '/api/label/dataset/'
+export const urlPrefix = '/api/label/samples/'
 
 export function GetList (query, limit, page) {
+  console.log({ ...query, limit, page })
   return request({
     url: urlPrefix,
     method: 'get',
-    params: { query, limit, page }
+    params: { ...query, limit, page }
   })
 }
 
