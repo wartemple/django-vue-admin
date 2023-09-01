@@ -4,9 +4,10 @@ services:
     container_name: web
     ports:
       - "8080:8080"
-    build:
-      context: ./
-      dockerfile: ./docker_env/web/Dockerfile
+    image: django-vue-admin-web
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker_env/web/Dockerfile
     environment:
       TZ: Asia/Shanghai
     volumes:
@@ -14,8 +15,7 @@ services:
     expose:
       - "8080"
     networks:
-      network:
-        ipv4_address: 177.8.0.11
+      - network
 
   django:
     build:
@@ -23,9 +23,8 @@ services:
       dockerfile: ./docker_env/django/Dockerfile
     container_name: django
     working_dir: /backend
-# 打开mysql 时，打开此选项
-   depends_on:
-     - dvadmin-mysql
+    depends_on:
+      - dvadmin-mysql
     environment:
       ARGILLA_API_URL: http://127.0.0.1:6900/
       PYTHONUNBUFFERED: 1
@@ -40,34 +39,32 @@ services:
       - "8000"
     restart: always
     networks:
-      network:
-        ipv4_address: 177.8.0.12
+      - network
 
- dvadmin-mysql:
-   image: mysql:5.7
-   container_name: dvadmin-mysql
-   #使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限
-   #设置为true，不然数据卷可能挂载不了，启动不起
-   privileged: true
-   restart: always
-   ports:
-     - "3306:3306"
-   environment:
-     MYSQL_ROOT_PASSWORD: "123456"
-     MYSQL_DATABASE: "dvadmin_pro"
-     TZ: Asia/Shanghai
-   command:
-     --wait_timeout=31536000
-     --interactive_timeout=31536000
-     --max_connections=1000
-     --default-authentication-plugin=mysql_native_password
-   volumes:
-     - "./docker_env/mysql/data:/var/lib/mysql"
-     - "./docker_env/mysql/conf.d:/etc/mysql/conf.d"
-     - "./docker_env/mysql/logs:/logs"
-   networks:
-     network:
-       ipv4_address: 177.8.0.13
+  dvadmin-mysql:
+    image: mysql:5.7
+    container_name: dvadmin-mysql
+    #使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限
+    #设置为true，不然数据卷可能挂载不了，启动不起
+    privileged: true
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: "dvadmin_pro"
+      TZ: Asia/Shanghai
+    command:
+      --wait_timeout=31536000
+      --interactive_timeout=31536000
+      --max_connections=1000
+      --default-authentication-plugin=mysql_native_password
+    volumes:
+      - "./docker_env/mysql/data:/var/lib/mysql"
+      - "./docker_env/mysql/conf.d:/etc/mysql/conf.d"
+      - "./docker_env/mysql/logs:/logs"
+    networks:
+      - network
 
 
 # 如果使用celery 插件，请自行打开此注释
@@ -115,8 +112,5 @@ services:
 
 networks:
   network:
-    ipam:
-      driver: default
-      config:
-        - subnet: '177.8.0.0/16'
+    driver: bridge
 
