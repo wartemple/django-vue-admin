@@ -23,8 +23,10 @@ AG_FIELD_CONFIGS = [
     {"name": "output", "title": "输出文本", "required": True},
     {"name": "source", "title": "语料来源", "required": False},
 ]
-
-rg.init(api_url=settings.ARGILLA_API_URL, api_key=settings.ARGILLA_API_KEY)
+try:
+    rg.init(api_url=settings.ARGILLA_API_URL, api_key=settings.ARGILLA_API_KEY)
+except Exception:
+    pass
 
 
 class Tasks(CoreModel):

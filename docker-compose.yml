@@ -1,37 +1,35 @@
-version: "3"
-services:
-  web:
-    container_name: web
-    ports:
-      - "8080:8080"
-    image: django-vue-admin-web
-    # build:
-    #   context: ./
-    #   dockerfile: ./docker_env/web/Dockerfile
-    environment:
-      TZ: Asia/Shanghai
-    volumes:
-      - ./docker_env/nginx/my.conf:/etc/nginx/conf.d/my.conf
-    expose:
-      - "8080"
-    networks:
-      - network
+version: "3.9"
 
-  django:
+services:
+  nginx:
+    build: ./docker_env/nginx
+    container_name: ${PROJECT_NAME}-nginx
+    ports:
+        - "${WEB_PORT}:8080"
+    expose:
+        - "8080"
+    volumes:
+        - ./web/dict:/usr/share/nginx/html
+        - ./compose/nginx/ssl:/usr/share/nginx/ssl
+        - ./compose/nginx/log:/var/log/nginx
+    restart: always
+    networks:
+        - network
+
+  backend:
     build:
       context: .
       dockerfile: ./docker_env/django/Dockerfile
-    container_name: django
-    working_dir: /backend
+    container_name: ${PROJECT_NAME}-backend
     depends_on:
-      - dvadmin-mysql
+      - mysql
     environment:
       ARGILLA_API_URL: http://127.0.0.1:6900/
       PYTHONUNBUFFERED: 1
-      DATABASE_HOST: dvadmin-mysql
+      DATABASE_HOST: mysql
       TZ: Asia/Shanghai
     volumes:
-      - ./backend:/backend
+      - ./backend:/app
       - ./logs/log:/var/log
     ports:
       - "8000:8000"
@@ -41,20 +39,22 @@ services:
     networks:
       - network
 
-  dvadmin-mysql:
-    image: mysql:5.7
-    container_name: dvadmin-mysql
-    #使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限
-    #设置为true，不然数据卷可能挂载不了，启动不起
+  mysql:
+    image: mysql
+    container_name: ${PROJECT_NAME}-mysql
     privileged: true
     restart: always
+    expose:
+      - "3306"
     ports:
-      - "3306:3306"
+      - "${MYSQL_PORT}:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "123456"
-      MYSQL_DATABASE: "dvadmin_pro"
-      TZ: Asia/Shanghai
+      - "MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_DATABASE:${MYSQL_DATABASE}"
+      - "TZ: Asia/Shanghai"
     command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
       --wait_timeout=31536000
       --interactive_timeout=31536000
       --max_connections=1000
@@ -109,6 +109,50 @@ services:
 #     network:
 #       ipv4_address: 177.8.0.15
 
+  argilla:
+    image: argilla/argilla-server:latest
+    restart: unless-stopped
+    ports:
+      - "6900:6900"
+    environment:
+      ARGILLA_HOME_PATH: /var/lib/argilla
+      ARGILLA_ELASTICSEARCH: http://elasticsearch:9200
+      DEFAULT_USER_ENABLED: true # Uncomment this line to disable the creation of the default user
+      # DEFAULT_USER_PASSWORD: P@ssw0rd123456 # Uncomment this line to set a custom password for the default user
+      # DEFAULT_USER_API_KEY: custom-api-key # Uncomment this line to set a custom api-key for the default user
+    networks:
+      - network
+    # volumes:
+    #   - argilladata:/var/lib/argilla
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=es-argilla-local
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - network
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    # volumes:
+    #   - elasticdata:/usr/share/elasticsearch/data/
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.5.3
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    networks:
+      - network
 
 networks:
   network:

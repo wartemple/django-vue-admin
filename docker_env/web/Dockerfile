@@ -1,4 +1,4 @@
-FROM registry.cn-zhangjiakou.aliyuncs.com/dvadmin-pro/node12-base-web:latest
+FROM node:14-alpine
 WORKDIR /web/
 COPY web/. .
 RUN npm install --registry=https://registry.npm.taobao.org
