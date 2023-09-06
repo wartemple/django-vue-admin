@@ -41,10 +41,10 @@ class SampleViewSet(CustomModelViewSet):
     import_serializer_class = SampleImportSerializer
     filter_fields = ['task',]
     export_field_label = {
-        "domain": "领域", "task": "任务类型", "lang": "语言", "prompt": "提示词",
+        "domain": "领域", "power": "权能", "lang": "语言", "prompt": "提示词",
         "input": "输入文本", "output": "输出文本", "source": "来源"
     }
     import_field_dict = {
-        "domain": "领域", "task": "任务类型", "lang": "语言", "prompt": "提示词",
+        "domain": "领域", "power": "权能", "lang": "语言", "prompt": "提示词",
         "input": "输入文本", "output": "输出文本", "source": "来源"
     }

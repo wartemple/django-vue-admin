@@ -1,13 +1,11 @@
 import re
 
 from django.db import transaction
-from django.shortcuts import render
 from dvadmin.utils.import_export import import_to_data
 from dvadmin.utils.json_response import DetailResponse, SuccessResponse
-from dvadmin.utils.permission import AnonymousUserPermission
 from dvadmin.utils.serializers import CustomModelSerializer
 from dvadmin.utils.viewset import CustomModelViewSet
-from label.models import Tasks, Samples
+from label.models import Tasks, Samples, Dataset
 from label.views.samples import SampleSerializer
 # Create your views here.
 from rest_framework import serializers
@@ -141,6 +139,12 @@ class TasksViewSet(CustomModelViewSet):
         task.save()
         return DetailResponse(msg="导入成功！")
 
+    @action(methods=['get'], detail=True)
+    @transaction.atomic  # Django 事务,防止出错
+    def publish_dataset(self, request: Request, *args, **kwargs):
+        task = self.get_object()
+        Dataset._copy_from_task(task)
+        return DetailResponse(msg="发布成功！")
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

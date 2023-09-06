@@ -9,9 +9,9 @@ services:
     expose:
         - "8080"
     volumes:
-        - ./web/dict:/usr/share/nginx/html
-        - ./compose/nginx/ssl:/usr/share/nginx/ssl
-        - ./compose/nginx/log:/var/log/nginx
+        - ./web/dist:/usr/share/nginx/html
+        - ./docker_env/nginx/ssl:/usr/share/nginx/ssl
+        - ./docker_env/nginx/log:/var/log/nginx
     restart: always
     networks:
         - network
@@ -21,12 +21,11 @@ services:
       context: .
       dockerfile: ./docker_env/django/Dockerfile
     container_name: ${PROJECT_NAME}-backend
+    env_file:
+      - backend.env
     depends_on:
       - mysql
     environment:
-      ARGILLA_API_URL: http://127.0.0.1:6900/
-      PYTHONUNBUFFERED: 1
-      DATABASE_HOST: mysql
       TZ: Asia/Shanghai
     volumes:
       - ./backend:/app
@@ -49,9 +48,9 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
     environment:
-      - "MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}"
-      - "MYSQL_DATABASE:${MYSQL_DATABASE}"
-      - "TZ: Asia/Shanghai"
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ="Asia/Shanghai"
     command:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
@@ -114,6 +113,8 @@ services:
     restart: unless-stopped
     ports:
       - "6900:6900"
+    expose:
+      - "6900"
     environment:
       ARGILLA_HOME_PATH: /var/lib/argilla
       ARGILLA_ELASTICSEARCH: http://elasticsearch:9200

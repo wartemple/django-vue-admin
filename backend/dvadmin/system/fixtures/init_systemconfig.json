@@ -13,10 +13,10 @@
         "setting": null,
         "children": [
             {
-                "parent": 10,
+                "parent": 1,
                 "title": "开启验证码",
                 "key": "captcha_state",
-                "value": true,
+                "value": false,
                 "sort": 1,
                 "status": true,
                 "data_options": null,
@@ -32,26 +32,7 @@
                 "children": []
             },
             {
-                "parent": 10,
-                "title": "创建用户默认密码",
-                "key": "default_password",
-                "value": "admin123456",
-                "sort": 2,
-                "status": true,
-                "data_options": null,
-                "form_item_type": 0,
-                "rule": [
-                    {
-                        "message": "必填项不能为空",
-                        "required": true
-                    }
-                ],
-                "placeholder": "请输入默认密码",
-                "setting": null,
-                "children": []
-            },
-            {
-                "parent": 10,
+                "parent": 1,
                 "title": "开启单点登录",
                 "key": "single_login",
                 "value": false,
@@ -66,6 +47,25 @@
                     }
                 ],
                 "placeholder": "请选择",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "创建用户默认密码",
+                "key": "default_password",
+                "value": "admin123456",
+                "sort": 2,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [
+                    {
+                        "message": "必填项不能为空",
+                        "required": true
+                    }
+                ],
+                "placeholder": "请输入默认密码",
                 "setting": null,
                 "children": []
             }
@@ -85,7 +85,7 @@
         "setting": null,
         "children": [
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "网站名称",
                 "key": "site_name",
                 "value": "企业级后台管理系统",
@@ -104,7 +104,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "登录网站logo",
                 "key": "site_logo",
                 "value": null,
@@ -118,7 +118,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "登录页背景图",
                 "key": "login_background",
                 "value": null,
@@ -132,7 +132,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "版权信息",
                 "key": "copyright",
                 "value": "2021-2022 django-vue-admin.com 版权所有",
@@ -151,7 +151,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "备案信息",
                 "key": "keep_record",
                 "value": "晋ICP备18005113号-3",
@@ -170,7 +170,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "帮助链接",
                 "key": "help_url",
                 "value": "https://django-vue-admin.com",
@@ -184,7 +184,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "隐私链接",
                 "key": "privacy_url",
                 "value": "#",
@@ -198,7 +198,7 @@
                 "children": []
             },
             {
-                "parent": 1,
+                "parent": 5,
                 "title": "条款链接",
                 "key": "clause_url",
                 "value": "#",

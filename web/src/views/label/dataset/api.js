@@ -1,5 +1,5 @@
-import { request } from '@/api/service'
-export const urlPrefix = '/api/label/tasks/'
+import { request, downloadFile } from '@/api/service'
+export const urlPrefix = '/api/label/datasets/'
 
 export function GetList (query, limit, page) {
   return request({
@@ -33,18 +33,10 @@ export function DelObj (id) {
   })
 }
 
-export function SyncAg (id) {
-  return request({
-    url: urlPrefix + id + '/sync_argilla/',
-    method: 'get',
-    data: { id }
-  })
-}
-
-export function PublishDataset (id) {
-  return request({
-    url: urlPrefix + id + '/publish_dataset/',
-    method: 'get',
-    data: { id }
+export function exportData (params) {
+  return downloadFile({
+    url: '/api/label/label_results/export_data/',
+    params: params,
+    method: 'get'
   })
 }

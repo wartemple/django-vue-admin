@@ -25,7 +25,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 277,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -72,7 +72,7 @@
                 "status": true,
                 "cache": false,
                 "visible": false,
-                "parent": 277,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -113,7 +113,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 277,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -160,7 +160,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 277,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -213,7 +213,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 277,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -283,8 +283,8 @@
                 "component_name": "messageCenter",
                 "status": true,
                 "cache": false,
-                "visible": true,
-                "parent": 277,
+                "visible": false,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -330,8 +330,8 @@
                 "component_name": "whiteList",
                 "status": true,
                 "cache": false,
-                "visible": true,
-                "parent": 277,
+                "visible": false,
+                "parent": 1,
                 "children": [],
                 "menu_button": [
                     {
@@ -370,6 +370,74 @@
         "menu_button": []
     },
     {
+        "name": "标注管理",
+        "icon": "calendar-plus-o",
+        "sort": 1,
+        "is_link": false,
+        "is_catalog": true,
+        "web_path": null,
+        "component": null,
+        "component_name": null,
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": null,
+        "children": [
+            {
+                "name": "标注任务",
+                "icon": "tasks",
+                "sort": 1,
+                "is_link": false,
+                "is_catalog": false,
+                "web_path": "/task",
+                "component": "label/task/index",
+                "component_name": "task",
+                "status": true,
+                "cache": false,
+                "visible": true,
+                "parent": 18,
+                "children": [],
+                "menu_button": [
+                    {
+                        "name": "详情",
+                        "value": "Retrieve",
+                        "api": "/api/label/tasks/{id}/",
+                        "method": 0
+                    },
+                    {
+                        "name": "编辑",
+                        "value": "Update",
+                        "api": "/api/label/tasks/{id}/",
+                        "method": 2
+                    },
+                    {
+                        "name": "删除",
+                        "value": "Delete",
+                        "api": "/api/label/tasks/{id}/",
+                        "method": 3
+                    }
+                ]
+            },
+            {
+                "name": "数据集管理",
+                "icon": "database",
+                "sort": 1,
+                "is_link": false,
+                "is_catalog": false,
+                "web_path": "/label/dataset",
+                "component": "label/dataset/index",
+                "component_name": "dataset",
+                "status": true,
+                "cache": false,
+                "visible": true,
+                "parent": 18,
+                "children": [],
+                "menu_button": []
+            }
+        ],
+        "menu_button": []
+    },
+    {
         "name": "常规配置",
         "icon": "cogs",
         "sort": 2,
@@ -380,7 +448,7 @@
         "component_name": "",
         "status": true,
         "cache": false,
-        "visible": true,
+        "visible": false,
         "parent": null,
         "children": [
             {
@@ -395,7 +463,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 285,
+                "parent": 9,
                 "children": [],
                 "menu_button": [
                     {
@@ -442,7 +510,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 285,
+                "parent": 9,
                 "children": [],
                 "menu_button": [
                     {
@@ -489,7 +557,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 285,
+                "parent": 9,
                 "children": [],
                 "menu_button": [
                     {
@@ -536,7 +604,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 285,
+                "parent": 9,
                 "children": [],
                 "menu_button": [
                     {
@@ -579,7 +647,7 @@
         "component_name": "",
         "status": true,
         "cache": false,
-        "visible": true,
+        "visible": false,
         "parent": null,
         "children": [
             {
@@ -594,7 +662,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 290,
+                "parent": 14,
                 "children": [],
                 "menu_button": [
                     {
@@ -623,7 +691,7 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 290,
+                "parent": 14,
                 "children": [],
                 "menu_button": [
                     {
@@ -652,27 +720,11 @@
                 "status": true,
                 "cache": false,
                 "visible": true,
-                "parent": 290,
+                "parent": 14,
                 "children": [],
                 "menu_button": []
             }
         ],
-        "menu_button": []
-    },
-    {
-        "name": "DVAdmin官网",
-        "icon": "external-link",
-        "sort": 4,
-        "is_link": true,
-        "is_catalog": false,
-        "web_path": "https://django-vue-admin.com",
-        "component": "",
-        "component_name": "",
-        "status": true,
-        "cache": false,
-        "visible": true,
-        "parent": null,
-        "children": [],
         "menu_button": []
     }
 ]

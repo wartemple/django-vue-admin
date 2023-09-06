@@ -1,7 +1,6 @@
 [
     {
         "name": "团队",
-        "key": "admin",
         "sort": 1,
         "owner": "",
         "phone": "",
@@ -10,27 +9,28 @@
         "parent": null,
         "children": [
             {
+                "name": "技术部",
+                "sort": 1,
+                "owner": "",
+                "phone": "",
+                "email": "",
+                "status": true,
+                "parent": 1,
+                "children": [],
+                "key": "technology"
+            },
+            {
                 "name": "运营部",
-                "key": "",
                 "sort": 2,
                 "owner": "",
                 "phone": "",
                 "email": "",
                 "status": true,
                 "parent": 1,
-                "children": []
-            },
-            {
-                "name": "技术部",
-                "key": "technology",
-                "sort": 1,
-                "owner": "",
-                "phone": "",
-                "email": "",
-                "status": true,
-                "parent": 3,
-                "children": []
+                "children": [],
+                "key": ""
             }
-        ]
+        ],
+        "key": "admin"
     }
 ]

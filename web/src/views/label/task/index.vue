@@ -83,7 +83,7 @@ export default {
       samplePage: 1,
       currentId: false,
       drawer: false,
-      importSampleUrl: "/api/label/samples/",
+      importSampleUrl: '/api/label/samples/',
       uploadOptions: {
         open: false,
         title: '',
@@ -120,7 +120,7 @@ export default {
       this.uploadOptions.open = true
       this.uploadOptions.url = util.baseURL() + `api/label/tasks/${row.row.id}/import_samples/`
     },
-    importSuccessHandler(response, file, fileList) {
+    importSuccessHandler (response, file, fileList) {
       console.log('上传成功')
       const that = this
       // that.upload.open = false
@@ -148,12 +148,12 @@ export default {
     },
     getSamples (row) {
       this.drawer = true
-      sampleApi.GetList({task: row.row.id}, 10, this.samplePage).then((response) => {
+      sampleApi.GetList({ task: row.row.id }, 10, this.samplePage).then((response) => {
         this.samples = response.data.data
       })
     },
     publishDataset (row) {
-      pass
+      api.PublishDataset(row.row.id)
     }
   }
 }

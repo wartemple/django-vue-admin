@@ -42,7 +42,7 @@ export const crudOptions = (vm) => {
           emit: 'syncAg',
           disabled (index, row) {
             return !row.sample_sum > 0
-          },
+          }
         },
         {
           thin: true,
@@ -53,7 +53,7 @@ export const crudOptions = (vm) => {
           emit: 'importSamples',
           disabled (index, row) {
             return row.sample_sum > 0
-          },
+          }
         },
         {
           thin: true,
@@ -64,7 +64,7 @@ export const crudOptions = (vm) => {
           emit: 'getSamples',
           disabled (index, row) {
             return !row.sample_sum > 0
-          },
+          }
         },
         {
           thin: true,
@@ -75,8 +75,8 @@ export const crudOptions = (vm) => {
           emit: 'publishDataset',
           disabled (index, row) {
             return !row.status
-          },
-        },
+          }
+        }
       ]
     },
     formOptions: {
@@ -84,10 +84,10 @@ export const crudOptions = (vm) => {
     },
     columns: [
       {
-        title: '编码',
+        title: 'ID',
         key: 'id',
         width: 90,
-        align: "center",
+        align: 'center',
         form: {
           disabled: true
         }
@@ -95,7 +95,7 @@ export const crudOptions = (vm) => {
       {
         title: '标注任务名称',
         key: 'name',
-        align: "center",
+        align: 'center',
         search: {
           disabled: false
         },
@@ -114,7 +114,7 @@ export const crudOptions = (vm) => {
         title: '样本数',
         key: 'sample_sum',
         width: 80,
-        align: "center",
+        align: 'center',
         form: {
           disabled: true
         }
@@ -132,16 +132,15 @@ export const crudOptions = (vm) => {
         title: '创建人',
         key: 'creator_name',
         width: 120,
-        align: "center",
+        align: 'center',
         form: {
           disabled: true
         }
-        
       },
       {
         title: '创建时间',
         key: 'create_datetime',
-        align: "center",
+        align: 'center',
         width: 150,
         form: {
           disabled: true
