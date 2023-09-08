@@ -88,7 +88,6 @@ export default {
     this.myChart = this.$echarts.init(document.getElementById('labelChart'))
     this.initGet()
     this.drawLine()
-    console.log(document.getElementById('labelChart'))
   }
 }
 </script>
