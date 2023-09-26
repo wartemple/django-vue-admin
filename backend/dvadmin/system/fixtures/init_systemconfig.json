@@ -88,7 +88,7 @@
                 "parent": 5,
                 "title": "网站名称",
                 "key": "site_name",
-                "value": "企业级后台管理系统",
+                "value": "数据加工平台",
                 "sort": 1,
                 "status": true,
                 "data_options": null,

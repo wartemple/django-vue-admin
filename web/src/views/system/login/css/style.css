@@ -219,9 +219,9 @@ img {
     display: inline-block;
     font-size: 24px;
     line-height: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 600;
-    color: #fff;
+    color: #050505;
 }
 
 .w3_info h4 {
@@ -244,7 +244,8 @@ img {
     width: 450px;
     display: grid;
     position: fixed;
-    right: 12vw;
+    top: 11vw;
+    right: 24vw;
     margin-left: auto;
 }
 

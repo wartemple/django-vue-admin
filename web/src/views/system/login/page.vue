@@ -1,14 +1,14 @@
 <template>
   <div
     class="w3l-signinform"
-    :style="{background:'url(' +(loginBackground || require('./image/bg.jpg')) +') no-repeat center', backgroundSize: '100% 100%' }"
+    :style="{background:'url(' +(loginBackground || require('./image/bg.png')) +') no-repeat center', backgroundSize: '100% 100%' }"
   >
     <!-- container -->
     <div class="wrapper">
       <!-- main content -->
       <div class="w3l-form-info">
         <!-- logo -->
-        <img class="page-login--logo" :src="siteLogo" width="300"/>
+        <!-- <img class="page-login--logo" :src="siteLogo" width="300"/> -->
         <div class="w3_info">
           <h2 style="text-align: center">{{ siteName || processTitle }}</h2>
           <el-card shadow="always" class="card">
@@ -85,7 +85,7 @@
             快速选择用户登录（限dev环境）
           </el-button>
           <!-- footer -->
-          <div class="footer">
+          <!-- <div class="footer">
             <p class="page-login--content-footer-locales">
               <a
                 v-for="language in $languages"
@@ -105,7 +105,7 @@
               <a :href="privacyUrl || '#'" target="_blank">隐私</a> |
               <a :href="clauseUrl || '#'" target="_blank">条款</a>
             </p>
-          </div>
+          </div> -->
           <!-- footer -->
         </div>
       </div>
