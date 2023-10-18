@@ -52,7 +52,7 @@ export const crudOptions = (vm) => {
       }
     ],
     rowHandle: {
-      width: 175,
+      width: 290,
       view: {
         thin: true,
         text: ''
@@ -73,7 +73,15 @@ export const crudOptions = (vm) => {
           type: 'primary',
           icon: 'el-icon-s-unfold',
           emit: 'downloadResult'
-        }
+        },
+        {
+          thin: true,
+          text: '导入标注结果',
+          size: 'mini',
+          type: 'primary',
+          icon: 'el-icon-s-unfold',
+          emit: 'importResults',
+        },
       ]
     }
   }

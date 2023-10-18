@@ -143,7 +143,7 @@ export default {
         that.$alert('导入成功', '导入完成', {
           confirmButtonText: '确定',
           callback: action => {
-            that.refreshView()
+            that.$refs.upload.refreshView()
           }
         })
       }).finally(() => {

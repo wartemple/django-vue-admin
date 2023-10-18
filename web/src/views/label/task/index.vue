@@ -133,7 +133,7 @@ export default {
         that.$alert('导入成功', '导入完成', {
           confirmButtonText: '确定',
           callback: action => {
-            that.refreshView()
+            this.doRefresh()
           }
         })
       } else {
@@ -141,7 +141,7 @@ export default {
         that.$alert(response.msg, '导入失败', {
           confirmButtonText: '确定',
           callback: action => {
-            that.refreshView()
+            this.doRefresh()
           }
         })
       }

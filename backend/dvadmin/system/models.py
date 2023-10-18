@@ -2,7 +2,7 @@ import hashlib
 import os
 from pathlib import PurePath, PureWindowsPath, PurePosixPath
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 
 from application import dispatch

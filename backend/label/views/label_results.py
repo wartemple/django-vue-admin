@@ -30,6 +30,11 @@ class LabelResultsViewSet(CustomModelViewSet):
     export_serializer_class = LabelResultsSerializer
     create_serializer_class = LabelResultsSerializer
     filter_fields = ['dataset', ]
+    import_field_dict = {
+        "domain": "领域", "power": "权能", "lang": "语言", "source": "来源",
+        "prompt": "提示词", "input": "输入文本", "output": "输出文本",
+        "new_prompt": "标注提示词", "new_input": "标注输入文本", "new_output": "标注输出文本"
+    }
 
     export_field_label = {
         "domain": "领域", "power": "权能", "lang": "语言", "source": "来源",

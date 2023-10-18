@@ -7,8 +7,9 @@ import openpyxl
 from django.conf import settings
 
 from dvadmin.utils.validator import CustomValidationError
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from io import BytesIO
+from tqdm.contrib import tenumerate
 
 
 def import_to_data(file, field_data, m2m_fields=None):
@@ -24,6 +25,8 @@ def import_to_data(file, field_data, m2m_fields=None):
         file_path_dir = os.path.join(settings.BASE_DIR, file)
         workbook = openpyxl.load_workbook(file_path_dir)
     elif isinstance(file, InMemoryUploadedFile):
+        workbook = openpyxl.load_workbook(BytesIO(file.read()))
+    elif isinstance(file, TemporaryUploadedFile):
         workbook = openpyxl.load_workbook(BytesIO(file.read()))
     table = workbook[workbook.sheetnames[0]]
     theader = tuple(table.values)[0]  # Excel的表头

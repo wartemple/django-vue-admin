@@ -52,3 +52,4 @@ websockets==10.4
 # project new packages
 argilla==1.14.0
 # elasticsearch
+tqdm
