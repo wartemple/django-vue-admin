@@ -26,6 +26,7 @@ from dvadmin.utils.json_response import ErrorResponse, DetailResponse
 from dvadmin.utils.request_util import save_login_log
 from dvadmin.utils.serializers import CustomModelSerializer
 from dvadmin.utils.validator import CustomValidationError
+from dvadmin.utils.throttling import LoginUserThrottle
 
 
 class CaptchaView(APIView):
@@ -146,6 +147,7 @@ class LoginView(TokenObtainPairView):
     登录接口
     """
     serializer_class = LoginSerializer
+    throttle_classes = (LoginUserThrottle,)
     permission_classes = []
 
 

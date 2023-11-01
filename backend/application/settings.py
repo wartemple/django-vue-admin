@@ -297,6 +297,9 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # 有身份 或者 只读访问(self.list,self.retrieve)
     ],
     "EXCEPTION_HANDLER": "dvadmin.utils.exception.CustomExceptionHandler",  # 自定义的异常处理
+    'DEFAULT_THROTTLE_RATES': {
+        'login': '3/m',
+    },
 }
 # ================================================= #
 # ******************** 登录方式配置 ******************** #
